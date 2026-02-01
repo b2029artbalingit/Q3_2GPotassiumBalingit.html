@@ -4,52 +4,30 @@
   <meta charset="UTF-8">
   <title>View Sign-ups</title>
 
-<style>
-body {
-  background-color: #3a5a78;
-  font-family: Arial, Helvetica, sans-serif;
-  padding: 30px;
-}
+  <style>
+    body {
+      font-family: Arial;
+      padding: 20px;
+      background-color: #f2f2f2;
+    }
 
-.container {
-  background: #fffdf8;
-  max-width: 900px;
-  margin: auto;
-  padding: 25px;
-  border-radius: 12px;
-  border: 2px solid #bfa76f;
-}
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
 
-h2 { color: #7b1e1e; }
+    th, td {
+      border: 1px solid #aaa;
+      padding: 8px;
+      text-align: center;
+    }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-}
-
-th, td {
-  border: 1px solid #bfa76f;
-  padding: 8px;
-  text-align: center;
-}
-
-th {
-  background-color: #3a5a78;
-  color: white;
-}
-
-select {
-  padding: 6px;
-}
-
-a {
-  display: inline-block;
-  margin-top: 20px;
-  color: #3a5a78;
-  font-weight: bold;
-}
-</style>
+    th {
+      background-color: #924e49;
+      color: white;
+    }
+  </style>
 
   <script>
     function loadSignups() {
@@ -119,24 +97,24 @@ a {
 <label>
   Filter by Club:
   <select id="filter" onchange="loadSignups()">
-        <option value=""> Select Club </option>
-        <option value="art">LIKHA (Digital & Visual Arts)</option>
-        <option value="frisbee">ALIANTI (Frisbee)</option>
-        <option value="dance">SAGALA (Dance)</option>
-        <option value="baking">BAKE CLUB (Baking)</option>
-        <option value="cs">COMPUTRON (Computer Science & IT)</option>
-        <option value="Christians">ACTS (Christians)</option>
-        <option value="englishtheatre">SIGHTLINES (English Theatre)</option>
-        <option value="filipinotheatre">KAMALAYAN (Filipino Theatre)</option>
-        <option value="mathematics">MATH CLUB (Mathematics)</option>
-        <option value="glee">HIMIG AGHAM (Glee)</option>
+    <option value="ALL">ALL</option>
+    <option value="art">LIKHA (Digital & Visual Arts)</option>
+    <option value="frisbee">ALIANTI (Frisbee)</option>
+    <option value="dance">SAGALA (Dance)</option>
+    <option value="baking">BAKE CLUB (Baking)</option>
+    <option value="cs">COMPUTRON (Computer Science & IT)</option>
+    <option value="Christians">ACTS (Christians)</option>
+    <option value="englishtheatre">SIGHTLINES (English Theatre)</option>
+    <option value="filipinotheatre">KAMALAYAN (Filipino Theatre)</option>
+    <option value="mathematics">MATH CLUB (Mathematics)</option>
+    <option value="glee">HIMIG AGHAM (Glee)</option>
   </select>
 </label>
 
 <div id="output"></div>
 <p id="total"></p>
 
-<a href="Q3_2GPotassiumBalingit.html">← Back to Sign-Up Page</a>
+<a href="Q3_3GPotassiumBalingit.html">← Back to Sign-Up Page</a>
 
 </body>
 </html>
