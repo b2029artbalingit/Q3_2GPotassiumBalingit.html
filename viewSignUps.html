@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>View Sign-Ups</title>
+  <meta charset="UTF-8">
+  <title>View Sign-ups</title>
 
 <style>
 body {
@@ -51,73 +51,91 @@ a {
 }
 </style>
 
-<script>
-let signups = JSON.parse(localStorage.getItem("signups")) || [];
+  <script>
+    function loadSignups() {
+      const data = JSON.parse(localStorage.getItem("signUps"));
 
-function loadTable(filter = "all") {
-  const tbody = document.getElementById("data");
-  tbody.innerHTML = "";
+      const output = document.getElementById("output");
+      const total = document.getElementById("total");
 
-  let filtered = filter === "all"
-    ? signups
-    : signups.filter(s => s.club === filter);
+      if (!data || data.length === 0) {
+        output.innerHTML = "<p>No sign-ups stored.</p>";
+        total.innerText = "";
+        return;
+      }
 
-  document.getElementById("total").innerText = filtered.length;
+      const filter = document.getElementById("filter").value;
+      const filtered = filter === "ALL"
+        ? data
+        : data.filter(s => s.club === filter);
 
-  if (filtered.length === 0) {
-    tbody.innerHTML = "<tr><td colspan='6'>No sign-ups found.</td></tr>";
-    return;
-  }
+      if (filtered.length === 0) {
+        output.innerHTML = "<p>No sign-ups for this club.</p>";
+        total.innerText = "Total Sign-ups: 0";
+        return;
+      }
 
-  filtered.forEach(s => {
-    tbody.innerHTML += `
-      <tr>
-        <td>${s.studentID}</td>
-        <td>${s.name}</td>
-        <td>${s.grade}</td>
-        <td>${s.status}</td>
-        <td>${s.club}</td>
-        <td>${s.email}</td>
-      </tr>`;
-  });
-}
-</script>
+      let html = `
+        <table>
+          <tr>
+            <th>Student ID</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Mobile No.</th>
+            <th>Grade</th>
+            <th>Club</th>
+            <th>Status</th>
+          </tr>
+      `;
+
+      filtered.forEach(s => {
+        html += `
+          <tr>
+            <td>${s.student_id}</td>
+            <td>${s.full_name}</td>
+            <td>${s.email}</td>
+            <td>${s.mobile}</td>
+            <td>${s.grade_level}</td>
+            <td>${s.club}</td>
+            <td>${s.status}</td>
+          </tr>
+        `;
+      });
+
+      html += "</table>";
+
+      output.innerHTML = html;
+      total.innerText = "Total Sign-ups: " + filtered.length;
+    }
+
+    window.onload = loadSignups;
+  </script>
 </head>
 
-<body onload="loadTable()">
+<body>
 
-<div class="container">
-  <h2>Student Sign-Ups</h2>
+<h2>Club Sign-ups</h2>
 
-  <label>Filter by Club:
+<label>Filter by Club:
     <select onchange="loadTable(this.value)">
-      <option value="all">All</option>
-      <option value="LIKHA">LIKHA</option>
-      <option value="ALIANTI">ALIANTI</option>
-      <option value="SAGALA">SAGALA</option>
-      <option value="COMPUTRON">COMPUTRON</option>
-      <option value="HIMIG AGHAM">HIMIG AGHAM</option>
+        <option value="all">All</option>
+        <option value="art">LIKHA (Digital & Visual Arts)</option>
+        <option value="frisbee">ALIANTI (Frisbee)</option>
+        <option value="dance">SAGALA (Dance)</option>
+        <option value="baking">BAKE CLUB (Baking)</option>
+        <option value="cs">COMPUTRON (Computer Science & IT)</option>
+        <option value="Christians">ACTS (Christians)</option>
+        <option value="englishtheatre">SIGHTLINES (English Theatre)</option>
+        <option value="filipinotheatre">KAMALAYAN (Filipino Theatre)</option>
+        <option value="mathematics">MATH CLUB (Mathematics)</option>
+        <option value="glee">HIMIG AGHAM (Glee)</option>
     </select>
-  </label>
+</label>
 
-  <p>Total Sign-Ups: <strong id="total">0</strong></p>
+<div id="output"></div>
+<p id="total"></p>
 
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Grade</th>
-        <th>Status</th>
-        <th>Club</th>
-        <th>Email</th>
-      </tr>
-    </thead>
-    <tbody id="data"></tbody>
-  </table>
-
-  <a href="signup.html">← Back to Sign-Up Page</a>
-</div>
+<a href="Q3_2GPotassiumBalingit.html">← Back to Sign-Up Page</a>
 
 </body>
 </html>
