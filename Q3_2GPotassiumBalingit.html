@@ -125,19 +125,33 @@
 
   <script>
     function confirmSubmit() {
-      return confirm("Are you sure you want to submit?");
+      if (!confirm("Are you sure you want to submit?")) return false;
+
+      // Get existing signups
+      let signups = JSON.parse(localStorage.getItem("signups")) || [];
+
+      // Create signup object
+      const signup = {
+        studentID: document.getElementById("sid").value,
+        name: document.getElementById("name").value,
+        birthday: document.getElementById("birthday").value,
+        email: document.getElementById("email").value,
+        phone: document.getElementById("phone").value,
+        grade: document.getElementById("grade").value,
+        status: document.querySelector('input[name="status"]:checked').value,
+        club: document.getElementById("club").value,
+        reason: document.getElementById("reason").value
+      };
+
+      signups.push(signup);
+      localStorage.setItem("signups", JSON.stringify(signups));
+
+      alert("Signup saved successfully!");
+      return false; // keep page visible
     }
 
-    function confirmReset() {
-      return confirm("Are you sure you want to reset?");
-    }
-
-    function checkEmpty(element) {
-      if (element.value.trim() === "") {
-        element.classList.add("invalid");
-      } else {
-        element.classList.remove("invalid");
-      }
+    function goToView() {
+      window.location.href = "viewSignUps.html";
     }
   </script>
 </head>
@@ -233,6 +247,7 @@
   <div class="buttons">
     <button type="submit" class="submit-btn">Submit</button>
     <button type="reset" class="reset-btn">Reset</button>
+    <button type="button" class="view-btn" onclick="goToView()">View Signups</button>
   </div>
 
 </form>
