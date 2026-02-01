@@ -116,9 +116,10 @@ a {
 
 <h2>Club Sign-ups</h2>
 
-<label>Filter by Club:
-    <select onchange="loadTable(this.value)">
-        <option value="all">All</option>
+<label>
+  Filter by Club:
+  <select id="filter" onchange="loadSignups()">
+        <option value=""> Select Club </option>
         <option value="art">LIKHA (Digital & Visual Arts)</option>
         <option value="frisbee">ALIANTI (Frisbee)</option>
         <option value="dance">SAGALA (Dance)</option>
@@ -129,7 +130,7 @@ a {
         <option value="filipinotheatre">KAMALAYAN (Filipino Theatre)</option>
         <option value="mathematics">MATH CLUB (Mathematics)</option>
         <option value="glee">HIMIG AGHAM (Glee)</option>
-    </select>
+  </select>
 </label>
 
 <div id="output"></div>
